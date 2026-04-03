@@ -8,12 +8,13 @@
     <!-- Mobile Menu Button -->
     <button
       class="md:hidden text-gray-800 hover:text-primary focus:outline-none transition-colors duration-300"
-      (click)="isMobileMenuOpen = !isMobileMenuOpen">
+      (click)="toggleMobileMenu()">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16m-7 6h7"/>
       </svg>
     </button>
+
     <!-- Desktop Navigation -->
     <nav class="hidden md:block">
       <ul class="flex space-x-8 items-center">
@@ -70,25 +71,22 @@
       <li>
         <span
           class="block py-2 hover:text-primary cursor-pointer"
-          (click)="isServicesOpen = !isServicesOpen">
+          (click)="toggleServices()">
           Services
         </span>
         <ul
           class="pl-4 space-y-1"
           [class.hidden]="!isServicesOpen">
-          <li><a class="block py-2 hover:text-primary cursor-pointer">Service 1</a></li>
-          <li><a class="block py-2 hover:text-primary cursor-pointer">Service 2</a></li>
-          <li><a class="block py-2 hover:text-primary cursor-pointer">Service 3</a></li>
+          <li><a (click)="closeMobileMenu()" class="block py-2 hover:text-primary cursor-pointer">Service 1</a></li>
+          <li><a (click)="closeMobileMenu()" class="block py-2 hover:text-primary cursor-pointer">Service 2</a></li>
+          <li><a (click)="closeMobileMenu()" class="block py-2 hover:text-primary cursor-pointer">Service 3</a></li>
         </ul>
       </li>
       <li>
         <a [routerLink]="['/contact']" class="block py-2 hover:text-primary cursor-pointer">Contact</a>
       </li>
       <li>
-        <a
-          class="block py-2 bg-primary hover:bg-secondary text-white rounded-md text-center transition-colors duration-300 cursor-pointer">
-          Get Started
-        </a>
+        <a (click)="closeMobileMenu()" class="block py-2 hover:text-primary cursor-pointer">Get Started</a>
       </li>
     </ul>
   </nav>
