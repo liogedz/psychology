@@ -11,6 +11,7 @@ import {TEXTS} from '@common/texts';
   ],
   templateUrl: './home-component.html',
   styleUrl: './home-component.css',
+  standalone: true
 })
 export class HomeComponent {
   firstCarousel: string[] = [TEXTS.text1, TEXTS.text2, TEXTS.text3, TEXTS.text4, TEXTS.text5];

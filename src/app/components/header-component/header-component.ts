@@ -10,6 +10,7 @@ import {NavbarService} from '@services/navbar-service';
   ],
   templateUrl: './header-component.html',
   styleUrl: './header-component.css',
+  standalone: true
 })
 export class HeaderComponent {
 

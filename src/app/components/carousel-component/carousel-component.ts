@@ -14,6 +14,7 @@ import {
   imports: [],
   templateUrl: './carousel-component.html',
   styleUrl: './carousel-component.css',
+  standalone: true
 })
 export class CarouselComponent implements AfterViewInit {
   @ViewChildren('slide') slides!: QueryList<ElementRef>;
