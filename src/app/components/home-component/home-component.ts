@@ -20,10 +20,10 @@ export class HomeComponent {
   showCards2 = signal(false)
 
   protected openCards1() {
-    this.showCards1() ? this.showCards1.set(false) : this.showCards1.set(true)
+    this.showCards1.update(v => !v);
   }
 
   protected openCards2() {
-    this.showCards2() ? this.showCards2.set(false) : this.showCards2.set(true)
+    this.showCards2.update(v => !v);
   }
 }

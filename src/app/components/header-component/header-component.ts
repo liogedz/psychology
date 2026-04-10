@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import {filter} from 'rxjs';
+import {NavbarService} from '@services/navbar-service';
 
 @Component({
   selector: 'app-header-component',
@@ -11,27 +12,32 @@ import {filter} from 'rxjs';
   styleUrl: './header-component.css',
 })
 export class HeaderComponent {
-  isMobileMenuOpen = false;
-  isServicesOpen = false;
 
-  constructor(private router: Router) {
+
+  constructor(
+    public navbar: NavbarService,
+    private router: Router
+  ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.closeMobileMenu();
+        this.navbar.closeAll();
       });
   }
 
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const target = event.target as HTMLElement;
 
-  toggleServices() {
-    this.isServicesOpen = !this.isServicesOpen;
-  }
+    if (
+      !target.closest('.mobile-menu') &&
+      !target.closest('.menu-button')
+    ) {
+      this.navbar.isMobileMenuOpen.set(false);
+    }
 
-  closeMobileMenu() {
-    this.isMobileMenuOpen = false;
-    this.isServicesOpen = false;
+    if (!target.closest('.services-menu')) {
+      this.navbar.isServicesOpen.set(false);
+    }
   }
 }
