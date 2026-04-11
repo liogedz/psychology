@@ -24,6 +24,9 @@
       ],
       "@services/*": [
         "app/services/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
       ]
     }
   },
